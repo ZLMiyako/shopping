@@ -1,4 +1,4 @@
-<?php /*a:2:{s:76:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\confirm\index.html";i:1564106057;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\head.html";i:1564016862;}*/ ?>
+<?php /*a:2:{s:76:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\confirm\index.html";i:1564123208;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\head.html";i:1564016862;}*/ ?>
 <!--模板继承头部-->
 <!DOCTYPE html>
 <html>
@@ -97,7 +97,6 @@
 							<i><img src="/yidong/public/uploads/<?php echo htmlentities($goods['img']); ?>"></i>
 							<dl>
 								<dt><?php echo htmlentities($goods['title']); ?></dt>
-								<dd><em>原味</em></dd>
 							</dl>
 						</a>
 						<p>
@@ -209,8 +208,13 @@
 					<p>合计：<span>￥<?php echo htmlentities($totle); ?></span></p>
 					<p>应付金额：<b>￥<?php echo htmlentities($totle); ?></b></p>
 				</h2>
-				<button>提交订单</button>
+				<button type="button" onclick="order()">提交订单</button>
 			</div>
+			<script>
+				function order(){
+					window.location.href="<?php echo url('Order/index'); ?>";
+				}
+			</script>
 		</form>	
 
 	</div>

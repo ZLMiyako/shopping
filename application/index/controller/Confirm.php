@@ -81,6 +81,7 @@
 						$reb = Db::name('admingwc')->insert(['u_id'=>$u_id,'p_id'=>$p_id,'img'=>$img,'title'=>$title.'/'.$data,'price'=>$price,'num'=>$num]);
 					}
 					//给暂存表中添加数据
+					$num = 1;
 					$ts = Db::name('admints')->insert(['id'=>1,'u_id'=>$u_id,'p_id'=>$p_id,'img'=>$img,'title'=>$title.'/'.$data,'price'=>$price,'num'=>$num]);
 				}
 			}

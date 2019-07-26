@@ -1,4 +1,4 @@
-<?php /*a:3:{s:76:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\details\index.html";i:1564107494;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\head.html";i:1564016862;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\foot.html";i:1563950333;}*/ ?>
+<?php /*a:3:{s:76:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\details\index.html";i:1564108201;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\head.html";i:1564016862;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\foot.html";i:1563950333;}*/ ?>
 <!--模板继承头部-->
 <!DOCTYPE html>
 <html>
@@ -46,7 +46,7 @@
 		<h1 style="opacity: 0;">商品详情</h1>
 		<!-- slider-pagination -->
 		<div class="r">
-	    	<span style=""><img src="/yidong/public/static/index/images/web/zy_icon_menu.png"></span>
+	    	<span><img src="/yidong/public/static/index/images/web/zy_icon_menu.png"></span>
 	    	<dl>
 	    		<dt></dt>
 	    		<dd><i><img src="/yidong/public/static/index/images/menu_icon01.png"></i><a href="<?php echo url('index/index'); ?>">首页</a></dd>
@@ -437,7 +437,6 @@
 					<div class="black_bg"></div>
 					<div class="shux">
 						<div class="goods_pic fix">
-							<i class="aclass"><img src="/yidong/public/uploads/<?php echo htmlentities($img1); ?>"></i>
 							<?php if(is_array($aclass) || $aclass instanceof \think\Collection || $aclass instanceof \think\Paginator): $i = 0; $__LIST__ = $aclass;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$aclass): $mod = ($i % 2 );++$i;?>
 							<i class="aclass" style="display: none;"><img src="/yidong/public/uploads/<?php echo htmlentities($aclass['img']); ?>"></i>
 							<?php endforeach; endif; else: echo "" ;endif; ?>
@@ -448,7 +447,6 @@
 							<div>
 								<h2>选择口味</h2>
 								<dl>
-									<dd class="cur class">原味</dd>
 									<?php if(is_array($class) || $class instanceof \think\Collection || $class instanceof \think\Paginator): $i = 0; $__LIST__ = $class;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$class): $mod = ($i % 2 );++$i;?>
 									<dd class="class"><?php echo htmlentities($class['name']); ?></dd>
 								

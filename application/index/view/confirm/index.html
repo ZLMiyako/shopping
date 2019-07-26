@@ -173,8 +173,13 @@
 					<p>合计：<span>￥{$totle}</span></p>
 					<p>应付金额：<b>￥{$totle}</b></p>
 				</h2>
-				<button>提交订单</button>
+				<button type="button" onclick="order()">提交订单</button>
 			</div>
+			<script>
+				function order(){
+					window.location.href="{:url('Order/index')}";
+				}
+			</script>
 		</form>	
 
 	</div>
