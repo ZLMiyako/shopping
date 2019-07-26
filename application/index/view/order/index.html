@@ -49,32 +49,36 @@
 		<div class="swiper-wrapper">
 			<div class="swiper-slide">
 				<ul>
+                    {volist name="list" id="num"}
 					<li>
 						<div class="vip_order_goods">
-							<h2><a href="user_order_detail.html">千辉超市<em></em></a></h2>
+                            <h2><a href="user_order_detail.html">千辉超市<em></em></a></h2>
+                            {volist name="num" id="goods"}
 							<h3>
 								<a href="user_order_detail.html">
-									<i><img src="__STATIC__/images/big_5.jpg"></i>
+									<i><img src="__IMG__/{$goods.img}"></i>
 									<dl>
-										<dt>千业吐司面包1Kg半切片三明治早餐蛋糕炼奶乳糕炼奶乳</dt>
+										<dt>{$goods.title}</dt>
 										<dd><em>原味</em><!-- <em>40</em> --></dd>
 									</dl>
 								</a>
 								<p>
-									<span>￥645.00</span>
-									<em>X1</em>
+									<span>￥{$goods.price}.00</span>
+									<em>X{$goods.num}</em>
 								</p>
-							</h3>
+                            </h3>
+                            {/volist}
 						</div>
 						<div class="total">
-							<span>共1件商品实付：<a>645.00元</a></span>
+							<span>共{$goods.nums}件商品实付：<a>{$goods.totle}.00元</a></span>
 						</div>
 						<div class="order_btn">
 							<a href="user_back_order_tk.html">退款</a>
 							<span>已确认</span>
 						</div>
-					</li>
-					<li>
+                    </li>
+                    {/volist}
+					<!-- <li>
 						<div class="vip_order_goods">
 							<h2><a href="user_order_detail.html">千辉超市<em></em></a></h2>
 							<h3>
@@ -82,7 +86,7 @@
 									<i><img src="__STATIC__/images/pic02.jpg"></i>
 									<dl>
 										<dt>千业吐司面包1Kg半切片三明治早餐蛋糕炼奶乳糕炼奶乳</dt>
-										<dd><em>原味</em><!-- <em>40</em> --></dd>
+										<dd><em>原味</em></dd>
 									</dl>
 								</a>
 								<p>
@@ -108,7 +112,7 @@
 									<i><img src="__STATIC__/images/pic05.jpg"></i>
 									<dl>
 										<dt>千业吐司面包1Kg半切片三明治早餐蛋糕炼奶乳糕炼奶乳</dt>
-										<dd><em>原味</em><!-- <em>40</em> --></dd>
+										<dd><em>原味</em></dd>
 									</dl>
 								</a>
 								<p>
@@ -123,7 +127,7 @@
 						<div class="order_btn">
 							<a onclick="javascript:alert('确定取消吗？')">取消订单</a>
 						</div>
-					</li>
+					</li> -->
 				</ul>
 				<div class="zy_fanye">
 					<a href="#">上一页</a>

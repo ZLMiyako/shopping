@@ -14,6 +14,12 @@
 				$msql = Session::get('msql');
 				$u_id = $msql['id'];
 				$this->productnum($u_id);
+				$order_number = Db::name('adminorder_number')->select();
+				$count = 0;
+				foreach ($order_number as $key => $value) {
+					$count = ++$count;
+				}
+				$this->assign('counts',$count);
 				
 			}else{
 				$this->productnum();

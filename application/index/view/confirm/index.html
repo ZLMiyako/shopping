@@ -177,7 +177,17 @@
 			</div>
 			<script>
 				function order(){
-					window.location.href="{:url('Order/index')}";
+					$.ajax({
+						url: "{:url('Order/index')}",
+						data: {aaa:2},
+						type: 'POST',
+						dataType: 'json',
+						success: function(msg){
+							if(msg.code==1){
+								window.location.href="{:url('Order/index')}";
+							}
+						},
+					});
 				}
 			</script>
 		</form>	

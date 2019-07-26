@@ -1,4 +1,4 @@
-<?php /*a:2:{s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\order\index.html";i:1564122913;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\head.html";i:1564016862;}*/ ?>
+<?php /*a:2:{s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\order\index.html";i:1564134452;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\head.html";i:1564016862;}*/ ?>
 <!--模板继承头部-->
 <!DOCTYPE html>
 <html>
@@ -84,32 +84,36 @@
 		<div class="swiper-wrapper">
 			<div class="swiper-slide">
 				<ul>
+                    <?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$num): $mod = ($i % 2 );++$i;?>
 					<li>
 						<div class="vip_order_goods">
-							<h2><a href="user_order_detail.html">千辉超市<em></em></a></h2>
+                            <h2><a href="user_order_detail.html">千辉超市<em></em></a></h2>
+                            <?php if(is_array($num) || $num instanceof \think\Collection || $num instanceof \think\Paginator): $i = 0; $__LIST__ = $num;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$goods): $mod = ($i % 2 );++$i;?>
 							<h3>
 								<a href="user_order_detail.html">
-									<i><img src="/yidong/public/static/index/images/big_5.jpg"></i>
+									<i><img src="/yidong/public/uploads/<?php echo htmlentities($goods['img']); ?>"></i>
 									<dl>
-										<dt>千业吐司面包1Kg半切片三明治早餐蛋糕炼奶乳糕炼奶乳</dt>
+										<dt><?php echo htmlentities($goods['title']); ?></dt>
 										<dd><em>原味</em><!-- <em>40</em> --></dd>
 									</dl>
 								</a>
 								<p>
-									<span>￥645.00</span>
-									<em>X1</em>
+									<span>￥<?php echo htmlentities($goods['price']); ?>.00</span>
+									<em>X<?php echo htmlentities($goods['num']); ?></em>
 								</p>
-							</h3>
+                            </h3>
+                            <?php endforeach; endif; else: echo "" ;endif; ?>
 						</div>
 						<div class="total">
-							<span>共1件商品实付：<a>645.00元</a></span>
+							<span>共<?php echo htmlentities($goods['nums']); ?>件商品实付：<a><?php echo htmlentities($goods['totle']); ?>.00元</a></span>
 						</div>
 						<div class="order_btn">
 							<a href="user_back_order_tk.html">退款</a>
 							<span>已确认</span>
 						</div>
-					</li>
-					<li>
+                    </li>
+                    <?php endforeach; endif; else: echo "" ;endif; ?>
+					<!-- <li>
 						<div class="vip_order_goods">
 							<h2><a href="user_order_detail.html">千辉超市<em></em></a></h2>
 							<h3>
@@ -117,7 +121,7 @@
 									<i><img src="/yidong/public/static/index/images/pic02.jpg"></i>
 									<dl>
 										<dt>千业吐司面包1Kg半切片三明治早餐蛋糕炼奶乳糕炼奶乳</dt>
-										<dd><em>原味</em><!-- <em>40</em> --></dd>
+										<dd><em>原味</em></dd>
 									</dl>
 								</a>
 								<p>
@@ -143,7 +147,7 @@
 									<i><img src="/yidong/public/static/index/images/pic05.jpg"></i>
 									<dl>
 										<dt>千业吐司面包1Kg半切片三明治早餐蛋糕炼奶乳糕炼奶乳</dt>
-										<dd><em>原味</em><!-- <em>40</em> --></dd>
+										<dd><em>原味</em></dd>
 									</dl>
 								</a>
 								<p>
@@ -158,7 +162,7 @@
 						<div class="order_btn">
 							<a onclick="javascript:alert('确定取消吗？')">取消订单</a>
 						</div>
-					</li>
+					</li> -->
 				</ul>
 				<div class="zy_fanye">
 					<a href="#">上一页</a>

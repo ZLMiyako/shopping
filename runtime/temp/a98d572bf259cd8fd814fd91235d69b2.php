@@ -1,4 +1,4 @@
-<?php /*a:2:{s:76:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\confirm\index.html";i:1564123208;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\head.html";i:1564016862;}*/ ?>
+<?php /*a:2:{s:76:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\confirm\index.html";i:1564131305;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\head.html";i:1564016862;}*/ ?>
 <!--模板继承头部-->
 <!DOCTYPE html>
 <html>
@@ -212,7 +212,17 @@
 			</div>
 			<script>
 				function order(){
-					window.location.href="<?php echo url('Order/index'); ?>";
+					$.ajax({
+						url: "<?php echo url('Order/index'); ?>",
+						data: {aaa:2},
+						type: 'POST',
+						dataType: 'json',
+						success: function(msg){
+							if(msg.code==1){
+								window.location.href="<?php echo url('Order/index'); ?>";
+							}
+						},
+					});
 				}
 			</script>
 		</form>	

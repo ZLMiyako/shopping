@@ -1,4 +1,4 @@
-<?php /*a:3:{s:73:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\user\index.html";i:1564022766;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\head.html";i:1564016862;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\foot.html";i:1563950333;}*/ ?>
+<?php /*a:3:{s:73:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\user\index.html";i:1564137720;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\head.html";i:1564016862;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\foot.html";i:1563950333;}*/ ?>
 <!--模板继承头部-->
 <!DOCTYPE html>
 <html>
@@ -52,9 +52,9 @@
 					<img src="/yidong/public/static/index/images/vip_img/vip_icon_sc.png">
 					<span>我的收藏(13)</span>
 				</a>
-				<a href="user_order.html">
+				<a href="<?php echo url('Order/index'); ?>">
 					<img src="/yidong/public/static/index/images/vip_img/vip_icon_dd.png">
-					<span>我的订单(9)</span>
+					<span>我的订单(<?php echo isset($counts) ? htmlentities($counts) : '0'; ?>)</span>
 				</a>
 				<a href="user_comment.html">
 					<img src="/yidong/public/static/index/images/vip_img/vip_icon_pj.png">
