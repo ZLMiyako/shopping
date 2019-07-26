@@ -22,6 +22,9 @@ use think\facade\Request;
 
 			$data = Request::param('id');
 			
+
+
+			
 			
 			$this->assign('id',$data);
 			return $this->fetch();
