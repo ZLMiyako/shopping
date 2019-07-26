@@ -1,4 +1,4 @@
-<?php /*a:1:{s:73:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\shop\index.html";i:1564105040;}*/ ?>
+<?php /*a:1:{s:73:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\shop\index.html";i:1564107825;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,7 +102,8 @@
 						}
 					})
 					console.log(id);
-					$.ajax({
+					if(id!=""){
+						$.ajax({
 						url: "<?php echo url('Shop/ts'); ?>",
 						data: {id},
 						type: 'POST',
@@ -113,6 +114,9 @@
 				            }
 						},
 					});
+					}else{
+						alert('您尚未确认购买商品');
+					}
 				}
 				//全选框设计
 				$("#theadInp").click(function(){

@@ -1,4 +1,4 @@
-<?php /*a:3:{s:76:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\details\index.html";i:1564051846;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\head.html";i:1564016862;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\foot.html";i:1563950333;}*/ ?>
+<?php /*a:3:{s:76:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\details\index.html";i:1564107494;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\head.html";i:1564016862;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\foot.html";i:1563950333;}*/ ?>
 <!--模板继承头部-->
 <!DOCTYPE html>
 <html>
@@ -480,11 +480,11 @@
 								console.log(a);
 								$.ajax({
 							        type:"POST",
-							        url:"<?php echo url('Shop/index',['id'=>$list['did']]); ?>",
+							        url:"<?php echo url('Confirm/add',['id'=>$list['did']]); ?>",
 							        data:{'data':a},
 							        success:function(data){
 							      		//console.log(data);
-							        	location.href="<?php echo url('Shop/index'); ?>";
+							        	location.href="<?php echo url('Confirm/index'); ?>";
 							        },
 							    })
 							}

@@ -101,7 +101,8 @@
 						}
 					})
 					console.log(id);
-					$.ajax({
+					if(id!=""){
+						$.ajax({
 						url: "{:url('Shop/ts')}",
 						data: {id},
 						type: 'POST',
@@ -112,6 +113,9 @@
 				            }
 						},
 					});
+					}else{
+						alert('您尚未确认购买商品');
+					}
 				}
 				//全选框设计
 				$("#theadInp").click(function(){

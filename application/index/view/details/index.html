@@ -11,7 +11,7 @@
 		<h1 style="opacity: 0;">商品详情</h1>
 		<!-- slider-pagination -->
 		<div class="r">
-	    	<span style=""><img src="__STATIC__/images/web/zy_icon_menu.png"></span>
+	    	<span><img src="__STATIC__/images/web/zy_icon_menu.png"></span>
 	    	<dl>
 	    		<dt></dt>
 	    		<dd><i><img src="__STATIC__/images/menu_icon01.png"></i><a href="{:url('index/index')}">首页</a></dd>
@@ -402,7 +402,6 @@
 					<div class="black_bg"></div>
 					<div class="shux">
 						<div class="goods_pic fix">
-							<i class="aclass"><img src="__IMG__/{$img1}"></i>
 							{volist name="aclass" id="aclass"}
 							<i class="aclass" style="display: none;"><img src="__IMG__/{$aclass.img}"></i>
 							{/volist}
@@ -413,7 +412,6 @@
 							<div>
 								<h2>选择口味</h2>
 								<dl>
-									<dd class="cur class">原味</dd>
 									{volist name="class" id="class"}
 									<dd class="class">{$class.name}</dd>
 								
@@ -445,11 +443,11 @@
 								console.log(a);
 								$.ajax({
 							        type:"POST",
-							        url:"{:url('Shop/index',['id'=>$list.did])}",
+							        url:"{:url('Confirm/add',['id'=>$list.did])}",
 							        data:{'data':a},
 							        success:function(data){
 							      		//console.log(data);
-							        	location.href="{:url('Shop/index')}";
+							        	location.href="{:url('Confirm/index')}";
 							        },
 							    })
 							}
