@@ -1,0 +1,34 @@
+<!--模板继承头部-->
+{include file="public/head" /}
+
+<!--模板继承身体-->
+{block name="body"}
+<body>
+<header class="zy_search_top_box">
+	<div class="zy_title_top fix">
+		<div class="one" href="javascript:" onclick="history.back();"><img src="__STATIC__/images/back_jt.png"></div>
+		<h1>商城公告</h1>
+	</div>
+</header>	
+
+<!-- 内容框 -->
+<div class="zy_module-content">
+	<div class="zy_news_xqbox bgwh p_2">
+		<div class="tit">
+			<h2>{$news.title}</h2>
+			<span><a>时间：<em>2018-07-29</em></a><a>作者：<em>{$news.writer}</em></a></span>
+		</div>
+		<div class="txt">
+			{php}echo $news['content'];{/php}
+		</div>
+		<h3>
+			<p><b>上一篇：</b><a href="#">好吃等你来！</a></p>
+			<p><b>下一篇：</b><a href="#">董事长在员工大会上发表重要讲话，全体员工认真履行学习贯彻实施</a></p>
+		</h3>
+	</div>
+
+</div>
+
+{/block}
+<!--模板继承脚-->
+{include file="public/foot" /}

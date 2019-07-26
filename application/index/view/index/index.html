@@ -1,0 +1,529 @@
+<!--模板继承头部-->
+{include file="public/head" /}
+
+<!--模板继承身体-->
+{block name="body"}
+<body>	
+
+<!--头部-->
+<header class="module-layer">
+    <div class="module-layer-content">
+    	<div class="module-layer-bg"></div>
+    	<div class="search-box-cover"></div>
+        <p class="layer-logo"><img src="__STATIC__/images/logo.png"></p>
+        <h1 class="layer-head-name">
+        	<div class="pr search-box">
+        		<img class="shop-search" src="__STATIC__/images/icon_search.png"/>
+        		<input id="shop-input" type="text" placeholder="零食" value="" />
+        	</div>
+        </h1>
+        {if $Think.session.msql}
+        <p class="layer-user"><a href="#">{$Think.session.msql.mobile}</a></p>
+        {else/}
+        <p class="layer-login"><a href="{:url('Login/login')}">登录</a></p>
+        {/if}
+    </div>
+</header>
+<script type="text/javascript" charset="utf-8">
+	$(function() {    
+		var $body = $('body');  
+	   	var setCoverOpacity = function() {  
+	        $body.find('.search-box-cover').css({  
+	            opacity: ((($body.scrollTop() / 150) > 0.9) ? 0.9 : ($body.scrollTop() / 150))  
+	        })  
+	    }  
+	//初始化设置背景透明度  
+	    setCoverOpacity();  
+	//监听滚动条事件，改变透明度  
+	    $(window).scroll(function() {  
+	        setCoverOpacity();  
+	    });  
+	});
+</script>
+
+<div class="module-content">
+	<!--banner图-->
+    <div class="swiper-container banner">
+		<ul class="swiper-wrapper">
+			{volist name="list" id="list"}
+			<li class="swiper-slide">
+				<img src="__IMG__/{$list.img|default='images/banner01.jpg'}" style="height: 233px;">
+			</li>
+			{/volist}
+		</ul>
+		<div class="swiper-pagination sp01"></div>
+		<script>
+		    var swiper = new Swiper('.banner', {
+		        pagination: '.sp01',
+		        paginationClickable: true,
+		        autoplay:"3000",
+		        loop:"ture",
+		        speed:500,
+		        autoplayDisableOnInteraction : false,
+		    });
+	    </script>
+    </div>
+
+    <!-- 图标导航icon -->
+    <div class="swiper-container nav_iconbox">
+	   	<div class="swiper-wrapper">
+	   		<!-- 每个ul有8个li，不能多于8个 -->
+	   		{volist name="nav" id="nav"}
+			<ul class="swiper-slide"> 
+				{volist name="nav.cate" id="anav"}
+		    	<li>
+		    		<a href="{:url($anav.url,['id'=>$anav.id])}">
+		    			<img src="__IMG__/{$anav.img}">
+		    			<span>{$anav.nav}</span>
+		    		</a>
+		    	</li>
+		 		{/volist}
+		    </ul>
+		    {/volist}
+		</div>
+		<div class="swiper-pagination icon01"></div>
+		<script>
+		    var swiper = new Swiper('.nav_iconbox', {
+		        pagination: '.icon01',
+		        paginationClickable: true,
+		        speed:500,
+		        autoplayDisableOnInteraction : false,
+		    });
+	    </script>
+    </div>
+
+    <!-- 商城公告和商家入驻口 -->
+    <div class="news_sj_dxs_box bgwh mb6">
+    	<div class="scrollnews">
+    		<span><a href="{:url('news/index')}"><img src="__STATIC__/images/news_tit.png"></a></span>
+    		<ul>
+    			{volist name="news" id="anews"}
+    			<li><a href="{:url('news/newscontent',['id'=>$anews.id])}">{$anews.title}</a></li>
+    			{/volist}
+    		</ul>
+    		<script type="text/javascript">
+                $(document).ready(function(){
+                    //滚动文字
+                    function runtxt(){
+                        $(".scrollnews ul").animate({marginTop:"-.4rem"},300,
+                            function(){
+                                $(".scrollnews ul li:last").after($(".scrollnews ul li:first"))
+                                $(".scrollnews ul").css("margin-top",0)
+                            }
+                        )
+                    }   
+                    $(".scrollnews ul li a").mouseenter(
+                        function(){
+                            clearInterval(timer)
+                        }
+                    )
+                    $(".scrollnews ul li a").mouseleave(
+                        function(){
+                            timer=setInterval(runtxt,4000)
+                        }
+                    )
+                    timer=setInterval(runtxt,4000)
+                })
+            </script>
+    	</div>
+    	<div class="sj_dxs_box">
+    		<h2>
+    			<a href="__STATIC__/apply_index.html">
+    				<img src="__STATIC__/images/bg_sj.jpg">
+    			</a>
+    		</h2>
+    	</div>
+    </div>
+
+    <!-- 热销品类 -->
+    <div class="yh_select bgwh mb6">
+		<div class="index_title rel">
+			<h1>
+				<a>热销品类</a>
+			</h1>
+			<i></i>
+		</div>
+		<div class="yh_goodsbox fix">
+			<div class="l">
+				<div class="swiper-container yh_wrapper">
+					<ul class="swiper-wrapper">
+						{volist name="sell" id="asell"}
+						<li class="swiper-slide">
+							<a href="{:url('details/index',['id'=>$asell.id])}">
+								<img src="__IMG__/{$asell.img}">
+								<p>{$asell.title}</p>
+	            				<span><!-- <em>￥699.00</em> --><i>￥{$asell.price}</i></span>
+							</a>
+						</li>
+						{/volist}
+					</ul>
+					<div class="swiper-pagination sp02"></div>
+					<script>
+					    var swiper = new Swiper('.yh_wrapper', {
+					        pagination: '.sp02',
+					        paginationClickable: true,
+					        autoplay:"3000",
+					        loop:"ture",
+					        speed:500,
+					        autoplayDisableOnInteraction : false,
+					    });
+				    </script>
+			    </div>
+		    </div>
+
+		    <div class="two r">
+		    	<h2>
+		    		<a href="__STATIC__/search_gzttc.html"><img src="__STATIC__/images/index_ad_pic(2).jpg"></a>
+		    	</h2>
+		    	<h3>
+		    		<a href="__STATIC__/search_gzttc.html"><img src="__STATIC__/images/index_ad_pic(3).jpg"></a>
+		    	</h3>
+		    	<h4>
+		    		<a href="__STATIC__/search_gzttc.html"><img src="__STATIC__/images/index_ad_pic(6).jpg"></a>
+		    	</h4>
+		    </div>
+		</div>
+	</div>
+
+	<!-- 广告条 -->
+    <div class="ad_picbox">
+		<ul class="swiper-wrapper">
+			{volist name="rate1" id="arate"}
+			<li class="swiper-slide">
+				<a href="__STATIC__/#"><img style="height:82px"src="__IMG__/{$arate.img}"></a>
+			</li>
+			{/volist}
+		</ul>
+		<script>
+		    var swiper = new Swiper('.ad_picbox', {
+		        autoplay:"4000",
+		        effect:"fade",
+		        loop:"ture",
+		        speed:700,
+		        autoplayDisableOnInteraction : false,
+		    });
+	    </script>
+    </div>
+
+    <!-- 新品推荐 -->
+    <div class="new_goods bgwh mb6">
+    	<div class="index_title rel">
+			<h1>
+				<a>新品推荐</a>
+			</h1>
+			<i></i>
+		</div>
+		<div class="nine_goods_pic">
+			<ul>
+				{volist name="newproduct" id="anewproduct"}
+				<li>
+					<a href="{:url('details/index',['id'=>$anewproduct.id])}">
+						<img src="__IMG__/{$anewproduct.img}">
+	            		<p>{$anewproduct.title}</p>
+	            		<span>￥{$anewproduct.price}</span>
+					</a>
+				</li>
+				{/volist}
+			</ul>
+			<div class="btn_link">
+				<a href="{:url('content/index',['id'=>1])}">更多新品></a>
+			</div>
+		</div>
+		<!-- 设置图片宽高相等，保持布局统一性 -->
+        <script type="text/javascript">
+        	$(function(){
+        		var w=$(".nine_goods_pic ul li img").width()
+        		$(".nine_goods_pic ul li img").css("height",w)
+        		
+        	})
+        </script>
+    </div>
+
+
+	<!-- 积分专区 -->
+    <!--<div class="hot_goods good_stores bgwh mb6">
+		<div class="index_title rel">
+			<h1>
+				<a>积分专区</a>
+			</h1>
+			<i></i>
+		</div> 
+    </div>-->
+	 <!-- 积分专区 -->
+    <!--<div class="hot_goods pj_goods_box bgwh mb6"> 
+		<div class="hot_goods_pic pj_goods">
+	        <ul class="swiper-wrapper">
+	            <li class="swiper-slide">
+	            	<a href="__STATIC__/goods.html">
+	            		<img src="__STATIC__/images/pic07.jpg">
+	            		<p>黑人牙膏超白茶家庭套装14支美白去黄去1517104正品</p>
+	            		<span>4200.00分</span>
+	            	</a>
+	            </li>
+	            <li class="swiper-slide">
+	            	<a href="__STATIC__/goods.html">
+	            		<img src="__STATIC__/images/pic04.jpg">
+	            		<p>千业吐司面包1Kg半切片三明治早餐蛋糕炼奶乳</p>
+	            		<span>4200.00分</span>
+	            	</a>
+	            </li>
+	            <li class="swiper-slide">
+	            	<a href="__STATIC__/goods.html">
+	            		<img src="__STATIC__/images/pic01.jpg">
+	            		<p>耐克NIKE体育用品男帽女帽 2018新款网球</p>
+	            		<span>4200.00分</span>
+	            	</a>
+	            </li>
+	            <li class="swiper-slide">
+	            	<a href="__STATIC__/goods.html">
+	            		<img src="__STATIC__/images/pic07.jpg">
+	            		<p>黑人牙膏超白茶家庭套装14支美白去黄去1517104正品</p>
+	            		<span>4200.00分</span>
+	            	</a>
+	            </li>
+	            <li class="swiper-slide">
+	            	<a href="__STATIC__/goods.html">
+	            		<img src="__STATIC__/images/pic04.jpg">
+	            		<p>耐克NIKE体育用品男帽女帽 2018新款网球</p>
+	            		<span>4200.00分</span>
+	            	</a>
+	            </li>
+	            <li class="swiper-slide">
+	            	<a href="__STATIC__/goods.html">
+	            		<img src="__STATIC__/images/pic05.jpg">
+	            		<p>innisfree/悦诗风吟绿茶精萃保湿洁面乳</p>
+	            		<span>4200.00分</span>
+	            	</a>
+	            </li>
+	            <li class="swiper-slide">
+	            	<a href="__STATIC__/goods.html">
+	            		<img src="__STATIC__/images/pic07.jpg">
+	            		<p>黑人牙膏超白茶家庭套装14支美白去黄去1517104正品</p>
+	            		<span>4200.00分</span>
+	            	</a>
+	            </li>
+	        </ul>-->
+	        <!-- 设置图片宽高相等，保持布局统一性 -->
+	        <!--<script type="text/javascript">
+	        	$(function(){
+	        		var w=$(".pj_goods ul li img").width()
+	        		$(".pj_goods ul li img").css("height",w)
+	        		
+	        	})
+	        </script>
+	    </div>-->
+	    <!-- Initialize Swiper -->
+	    <!--<script>
+	    var swiper = new Swiper('.pj_goods', {
+	        slidesPerView: 3.5,
+	        paginationClickable: true,
+	        spaceBetween: 10,
+	        autoplay:2500,
+	        autoplayDisableOnInteraction : false,
+	    });
+	    </script>
+    </div>-->
+
+
+	<!-- 广告条 -->
+    <div class="ad_picbox">
+		<ul class="swiper-wrapper">
+			{volist name="rate2" id="arate"}
+			<li class="swiper-slide">
+				<a href="__STATIC__/#"><img style="height:82px"src="__IMG__/{$arate.img}"></a>
+			</li>
+			{/volist}
+		</ul>
+		<script>
+		    var swiper = new Swiper('.ad_picbox', {
+		        autoplay:"4000",
+		        effect:"fade",
+		        loop:"ture",
+		        speed:700,
+		        autoplayDisableOnInteraction : false,
+		    });
+	    </script>
+    </div>
+	<!--------------------------------------->
+   			 <!-- 1 - 3 导航 -->
+    <!--------------------------------------->
+    <div class="sy_goods_box">
+	    <div class="swiper-container goods_box01 bgwh mb6">
+			<!-- 栏目 栏目 -->
+			<div class="sy_my_pagetion my_page01"></div>
+			
+			<div class="swiper-wrapper">
+				{volist name="more1" id="amore"}
+				<div class="swiper-slide nine_goods_pic">
+					<ul>
+						{volist name="amore.m" id="pro"}
+						<li>
+							<a href="{:url('details/index',['id'=>$pro.id])}">
+								<img src="__IMG__/{$pro.img}">
+			            		<p>{$pro.title}</p>
+			            		<span>￥{$pro.price} <em style="color: #999; font-size: 10px; float: right;">购买量：{$pro.pv}</em></span>
+							</a>
+						</li>
+						{/volist}
+					</ul>
+					<div class="btn_link">
+						<a href="{:url('content/index',['id'=>$amore.id])}">查看更多></a>
+					</div>
+				</div>
+				{/volist}
+			</div>
+			
+		</div>
+		<script>
+		    var swiper = new Swiper('.goods_box01', {
+		    	autoHeight: true, //enable auto height
+		    	pagination: '.my_page01',
+				paginationClickable: true,
+				paginationBulletRender: function (swiper,index, className) {
+				switch (index) {
+				  case 0: name='饮料专区';break;
+				  case 1: name='休闲零食';break;
+				  case 2: name='新鲜水果';break;
+				  default: name='';
+				}
+				      return '<a class="' + className + '">' + name + '</a>';
+				  }
+		    });
+	    </script>
+    </div>
+    
+   <!--------------------------------------->
+   			 <!-- 4 - 6 导航 -->
+    <!--------------------------------------->
+	<div class="sy_goods_box">
+	    <div class="swiper-container goods_box02 bgwh mb6">
+			<!-- 栏目 栏目 -->
+			<div class="sy_my_pagetion my_page02"></div>
+			<div class="swiper-wrapper">
+				
+				{volist name="more2" id="amore"}
+				<div class="swiper-slide nine_goods_pic">
+					<ul>
+						{volist name="amore.m" id="pro"}
+						<li>
+							<a href="{:url('details/index',['id'=>$pro.id])}">
+								<img src="__IMG__/{$pro.img}">
+			            		<p>{$pro.title}</p>
+			            		<span>￥{$pro.price} <em style="color: #999; font-size: 10px; float: right;">购买量：{$pro.pv}</em></span>
+							</a>
+						</li>
+						{/volist}
+					</ul>
+					<div class="btn_link">
+						<a href="{:url('content/index',['id'=>$amore.id])}">查看更多></a>
+					</div>
+				</div>
+				{/volist}
+			</div>
+		</div>
+		<script>
+		    var swiper = new Swiper('.goods_box02', {
+		    	autoHeight: true, //enable auto height
+		    	pagination: '.my_page02',
+				paginationClickable: true,
+				paginationBulletRender: function (swiper,index, className) {
+				switch (index) {
+				  case 0: name='散称零食';break;
+				  case 1: name='方便面';break;
+				  case 2: name='酒水专区';break;
+				  default: name='';
+				}
+				      return '<a class="' + className + '">' + name + '</a>';
+				  }
+		    });
+	    </script>
+	</div>
+
+	<!--------------------------------------->
+   			 <!-- 7 - 9 导航 -->
+    <!--------------------------------------->
+	<div class="sy_goods_box">
+	    <div class="swiper-container goods_box03 bgwh mb6">
+			<!-- 栏目 栏目 -->
+			<div class="sy_my_pagetion my_page03"></div>
+			<div class="swiper-wrapper">
+
+				{volist name="more3" id="amore"}
+				<div class="swiper-slide nine_goods_pic">
+					<ul>
+						{volist name="amore.m" id="pro"}
+						<li>
+							<a href="{:url('details/index',['id'=>$pro.id])}">
+								<img src="__IMG__/{$pro.img}">
+			            		<p>{$pro.title}</p>
+			            		<span>￥{$pro.price} <em style="color: #999; font-size: 10px; float: right;">购买量：{$pro.pv}</em></span>
+							</a>
+						</li>
+						{/volist}
+					</ul>
+					<div class="btn_link">
+						<a href="{:url('content/index',['id'=>$amore.id])}">查看更多></a>
+					</div>
+				</div>
+				{/volist}
+				
+
+			</div>
+		</div>
+		<script>
+		    var swiper = new Swiper('.goods_box03', {
+		    	autoHeight: true, //enable auto height
+		    	pagination: '.my_page03',
+				paginationClickable: true,
+				paginationBulletRender: function (swiper,index, className) {
+				switch (index) {
+				  case 0: name='冲调食品';break;
+				  case 1: name='茗茶';break;
+				  case 2: name='休闲零食';break;
+				  default: name='';
+				}
+				      return '<a class="' + className + '">' + name + '</a>';
+				  }
+		    });
+	    </script>
+	</div>
+
+	
+	<!-- 猜你喜欢 -->
+	<div class="maybe_u_like">
+		<div class="index_title rel">
+			<h1>
+				<a>精选推荐</a>
+			</h1>
+			<i></i>
+		</div>
+		<ul>
+			{volist name="boutique" id="aboutique"}
+			<li>
+				<a href="{:url('details/index',['id'=>$aboutique.id])}">
+            		<i><img src="__IMG__/{$aboutique.img}"></i>
+            		<p>{$aboutique.title}</p>
+            		<span>￥{$aboutique.price}</span>
+            	</a>
+			</li>
+			{/volist}
+		</ul>
+
+		<!-- 设置图片宽高相等，保持布局统一性 -->
+		<script type="text/javascript">
+			$(function(){
+	        		var w=$(".maybe_u_like ul li i").width()
+	        		$(".maybe_u_like ul li i").css("height",w)
+	        		
+	        	})
+		</script>
+		<div class="zy_more">
+			<h2>加载更多···</h2>
+		</div>
+	</div>
+	
+	
+
+{/block}
+<!--模板继承脚-->
+{include file="public/foot" /}

@@ -1,0 +1,74 @@
+<!--_meat 作为公共模版分离出去-->	
+
+{include file="public/_meta" /}
+
+<!--_meat 作为公共模版分离出去-->	
+<title>新增图片</title>
+</head>
+<body>
+<div class="page-container">	
+	<form class="layui-form" action="" method="post">
+		<div class="layui-form-item">
+		    <label class="layui-form-label">商品名称</label>
+		    <div class="layui-input-block">
+		    	<input type="text" name="name"   autocomplete="off" placeholder="请输入商品名称" class="layui-input">
+		    </div>
+	  	</div>
+	  	<div class="layui-form-item">
+		    <label class="layui-form-label">商品介绍</label>
+		    <div class="layui-input-block">
+		    	<input type="text" name="title"   autocomplete="off" placeholder="请输入商品介绍" class="layui-input">
+		    </div>
+	  	</div>
+	  	<div class="layui-form-item">
+		    <label class="layui-form-label">商品价格</label>
+		    <div class="layui-input-block">
+		    	<input type="text" name="price"   autocomplete="off" placeholder="请输入商品价格" class="layui-input">
+		    </div>
+	  	</div>
+	  	
+	  	<div class="layui-form-item">
+		    <label class="layui-form-label">商品状态</label>
+		    <div class="layui-input-block">
+		    	<input type="text" name="status"   autocomplete="off" placeholder="请输入图片名称" class="layui-input">
+		    </div>
+	  	</div>
+	  	<div class="layui-form-item">
+		    <label class="layui-form-label">分类ID</label>
+		    <div class="layui-input-block">
+		    	<select name="pid">
+		    		<option value="1">饮料饮品</option>
+		    		<option value="2">休闲零食</option>
+		    		<option value="3">新鲜水果</option>
+		    		<option value="4">散称零食</option>
+		    		<option value="5">方便面</option>
+		    		<option value="6">酒水专区</option>
+		    		<option value="7">冲调食品</option>
+		    		<option value="8">茗茶</option>
+		    	</select>
+		    </div>
+	  	</div>
+ 		<input type="hidden" name="img" id="uplode"  value="" />
+  		<div class="layui-upload">
+			  <button type="button" class="layui-btn" id="test2" data-img="{:url('Adminproduct/upload')}">商品图标</button> 
+			  <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+			    预览图：
+			   <div class="layui-upload-list" id="demo2"></div>
+			   </blockquote>
+			</div>
+		 <div class="layui-form-item">
+		    <div class="layui-input-block">
+		      	<button class="layui-btn" lay-submit lay-filter="demo1" data-insert="{:url('Adminproduct/insert')}" id="addBtn">立即提交</button>
+		    </div>
+		  </div>
+	
+	</form>	
+	
+</div>
+<!--_footer 作为公共模版分离出去-->
+
+{include file="public/_footer" /}
+
+<!--_footer 作为公共模版分离出去-->
+</body>
+</html>

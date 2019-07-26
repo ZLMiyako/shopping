@@ -1,0 +1,123 @@
+<!--_meat 作为公共模版分离出去-->	
+
+{include file="public/_meta" /}
+
+<!--_meat 作为公共模版分离出去-->	
+<title>编辑图片</title>
+</head>
+<body>
+<div class="page-container">	
+	<form class="layui-form" action="" method="post">
+		
+		<div class="layui-form-item" >
+		    <label class="layui-form-label" style="width: 120px; color: #393d49;">您选择的口味是：</label>
+		    <div class="layui-btn layui-bg-green selectBtn" type="button" >
+		    	<span id="aname">{$update.name}</span>
+		    	<input type="hidden"  value="" />
+		    </div>
+	  	</div>
+		
+		<div class="layui-form-item">
+		    <label class="layui-form-label" style="width: 120px;">点击更换口味：</label>
+		    <div class="layui-btn layui-bg-gray selectBtn" type="button" >
+		    	<span>麻辣</span>
+		    	<input type="hidden"  value="" />
+		    </div>
+		    
+		    <div class="layui-btn layui-bg-blue selectBtn" type="button" >
+		    	<span>微辣</span>
+		    	<input type="hidden"  value=""/>
+		    </div>
+		    
+		    <div class="layui-btn layui-bg-orange selectBtn" type="button" >
+		    	<span>不辣</span>
+		    	<input type="hidden"  value=""/>
+		    </div>
+		    
+		     <button class="layui-btn layui-bg-black" type="button" id="resetBtn">重置口味</button>
+	  	</div>
+	  	
+	  	<div class="layui-form-item" >
+		    <label class="layui-form-label" style="width: 120px; color: #393d49">您选择的大小是：</label>
+		    <div class="layui-btn layui-bg-green sizeBtn" type="button" >
+		    	<span id="asize">{$update.size}</span>
+		    	<input type="hidden"  value="" />
+		    </div>
+	  	</div>
+	  	
+	  	<div class="layui-form-item">
+		    <label class="layui-form-label" style="width: 120px;">点击更换大小：</label>
+		    <div class="layui-btn layui-bg-gray sizeBtn" type="button" >
+		    	<span>大</span>
+		    	<input type="hidden"  value=""/>
+		    </div>
+		    
+		    <div class="layui-btn layui-bg-blue sizeBtn" type="button" >
+		    	<span>中</span>
+		    	<input type="hidden"  value=""/>
+		    </div>
+		    
+		    <div class="layui-btn layui-bg-orange sizeBtn" type="button" >
+		    	<span>小</span>
+		    	<input type="hidden"   value=""/>
+		    </div>
+		    
+		     <button class="layui-btn layui-bg-black" type="button" id="aresetBtn">重置口味</button>
+	  	</div>
+	  	
+	  	<input type="hidden" name="id"  value="{$update.id}" />
+ 		<input type="hidden" name="img" id="uplode"  value="{$update.img}" />
+  		<div class="layui-upload">
+			<button type="button" class="layui-btn" id="test2" data-img="{:url('Adminclass/upload')}">更换图片</button>
+			<div class="layui-upload-list">
+				{volist name="img" id="aimg"}
+			    <img class="layui-upload-img" id="demo1" src="__IMG__/{$aimg}">
+			    {/volist}
+			    <p id="demoText"></p>
+			</div>
+		</div>
+		 <div class="layui-form-item">
+		    <div class="layui-input-block">
+		      	<button class="layui-btn" lay-submit lay-filter="demo1" data-insert="{:url('Adminclass/update')}" id="addBtn">立即提交</button>
+		    </div>
+		  </div>
+	
+	</form>	
+	
+</div>
+<script type="text/javascript">
+		//选择口味
+	var selectBtn = $(".selectBtn");
+			$.each(selectBtn, function(i,v) {
+				$(this).click(function(){
+					$("#aname").text($(this).children(":first-child").text());
+					$(this).children(":last-child").val($(this).children(":first-child").text());
+					$(this).children(":last-child").attr('name','name')
+				})
+			});
+	//选择大小
+	var sizeBtn = $(".sizeBtn");
+			$.each(sizeBtn, function(i,v) {
+				$(this).click(function(){
+					$("#asize").text($(this).children(":first-child").text());
+					$(this).children(":last-child").val($(this).children(":first-child").text());
+					$(this).children(":last-child").attr('name','size')
+				})
+			});
+	//重置口味		
+		$("#resetBtn").click(function(){
+			$("#aname").text('{$update.name}');
+		})
+		$("#aresetBtn").click(function(){
+			$("#asize").text('{$update.size}');
+		})	
+	
+	</script>
+<!--_footer 作为公共模版分离出去-->
+
+{include file="public/_footer" /}
+
+<!--_footer 作为公共模版分离出去-->
+
+</body>
+</html>

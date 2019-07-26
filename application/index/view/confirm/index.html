@@ -1,0 +1,203 @@
+<!--模板继承头部-->
+{include file="public/head" /}
+
+<body>
+<header class="zy_search_top_box">
+	<div class="zy_title_top fix">
+		<div class="one" href="javascript:" onclick="history.back();"><img src="__STATIC__/images/back_jt.png"></div>
+		<h1>确认订单</h1>
+	</div>
+</header>	
+
+<!-- 内容框 -->
+<div class="zy_module-content">
+	<div class="zy_flow_confirm">
+		<form>
+			<div class="sh_dizhi">
+				<a onclick="site('{$site.id}')">
+					<i><img src="__STATIC__/images/web/icon_position.png"></i>
+					<dl>
+						<dt>收货人：<span>{$site.name}</span></dt>
+						<dd>收货地址：<span>{$site.site}</span></dd>
+					</dl>
+					<b><img src="__STATIC__/images/web/back_jt_w.png"></b>
+				</a>
+				<script type="text/javascript">
+					function site(id){
+						$.ajax({
+						url: "{:url('Site/index')}",
+						data: {id},
+						type: 'POST',
+						dataType: 'json',
+						success: function(msg){
+							if (msg.code == 1) {
+								window.location.href="{:url('Site/index',['id'=>$site.id])}";
+				            }
+						},
+						});
+					}
+				</script>
+			</div>
+			<div class="box dingdxq">
+				<div class="zy_title_con_01">
+					<h2><span>订单详情<i></i></span></h2>
+				</div>
+				<div class="con">
+					<h2>盛千辉便利店</h2>
+					{volist name="goods" id="goods"}
+					<h3>
+						<a href="goods.html">
+							<i><img src="__IMG__/{$goods.img}"></i>
+							<dl>
+								<dt>{$goods.title}</dt>
+								<dd><em>原味</em></dd>
+							</dl>
+						</a>
+						<p>
+							<span>￥{$goods.price}</span>
+							<em>X{$goods.num}</em>
+						</p>
+					</h3>
+					{/volist} 
+					<ul>
+						<li class="cur">
+							<a>千辉便利店配送</a>
+							<p>千辉便利店会在2个小时内送到您的手中...</p>
+						</li> 
+					</ul>
+
+					<script type="text/javascript">
+						$(function(){
+							$(".dingdxq ul li").click(
+								function(){
+									$(this).addClass("cur")
+									$(this).siblings().removeClass("cur")
+								}
+							)
+
+							$(".dingdxq .con>div p").mousedown(
+								function(){
+									$(".dingdxq .con>div h4").slideToggle()
+									if ($(this).find("em").hasClass("xz")) {
+										$(this).find("em").removeClass("xz")
+										$(this).find("em").addClass("xz01")
+									}else{
+										$(this).find("em").addClass("xz")
+										$(this).find("em").removeClass("xz01")
+									}
+								}
+							)
+						})
+					</script>
+				</div>
+			</div>
+			<div class="box other">
+				<div class="zy_title_con_01">
+					<h2><span>其他选项<i></i></span></h2>
+				</div>
+				<ul>
+					<li class="fapiao">
+						<div class="xiala">
+							<p>开发票和缺货处理<em><img src="__STATIC__/images/web/jt_down_r.png"></em></p>
+							<h4> 
+								<a>
+									<span>缺货处理</span>
+									<label><input type="radio" name="quehuo" checked="checked">等待所有商品备齐后再发</label>
+									<label><input type="radio" name="quehuo">取消订单</label>
+									<label><input type="radio" name="quehuo">与店主协商</label>
+								</a>
+							</h4>
+						</div>
+					</li>
+					<li class="time">
+						<div class="xiala">
+							<p>送货时间<em><img src="__STATIC__/images/web/jt_down_r.png"></em></p>
+							<h4>
+								<label><input type="radio" name="time" checked="checked"><a>送货时间不限</a></label>
+								<label><input type="radio" name="time"><a>只双休日/节假日送货（工作日不用送）</a></label>
+								<label><input type="radio" name="time"><a>只工作日（双休日/节假日不用送）</a></label>
+							</h4>
+						</div>
+					</li>
+					<li>
+						<div class="xiala">
+							<p>订单附言<em><img src="__STATIC__/images/web/jt_down_r.png"></em></p>
+							<h4>
+								<textarea placeholder="请输入留言"></textarea>
+							</h4>
+						</div>
+					</li>
+				</ul>
+				<script type="text/javascript">
+					$(function(){
+							$(".zy_flow_confirm .other li>div p").mousedown(
+								function(){
+									$(this).siblings().slideToggle()
+									if ($(this).find("em").hasClass("xz")) {
+										$(this).find("em").removeClass("xz")
+										$(this).find("em").addClass("xz01")
+									}else{
+										$(this).find("em").addClass("xz")
+										$(this).find("em").removeClass("xz01")
+									}
+								}
+							)
+						})
+				</script>
+			</div>
+			<div class="box pay_type">
+				<div class="zy_title_con_01 xiala">
+					<h2><span>支付方式<i></i></span><a>（必选）<b>请选择支付方式</b></a> </h2>
+				</div>
+				<div class="con">
+					<label><input type="radio" name="pay"><img src="__STATIC__/images/web/icon_wechat.png">微信支付</label> 
+				</div>
+			</div>
+			
+			<div class="box txt">
+				<p>该订单完成后，您将获得<a>250</a>积分以及价值<a>￥40.00</a>的红包</p> 
+			</div>
+			<div class="box total">
+				<h2>
+					<p>合计：<span>￥{$totle}</span></p>
+					<p>应付金额：<b>￥{$totle}</b></p>
+				</h2>
+				<button>提交订单</button>
+			</div>
+		</form>	
+
+	</div>
+	
+	
+	<!-- 底部 -->
+
+	<!-- 返回顶部 -->
+	<div class="go_top">
+		<a class="btn_top"></a>
+	</div>
+	<script type="text/javascript">
+        $(function(){
+			window.onscroll=function(){
+			var autoheight=document.body.scrollTop||document.documentElement.scrollTop;
+			if(autoheight>100){
+				$(".go_top").fadeIn()
+				}else{
+					$(".go_top").fadeOut()
+				}
+			}
+			$(".btn_top").mousedown(
+				function(){
+					$("html, body").animate({"scroll-top":0},"fast");
+				}
+			)
+		})
+    </script>
+
+	<!-- 底部导航 -->
+
+</div>
+
+
+</body>
+<!--模板继承脚-->
+{include file="public/foot" /}

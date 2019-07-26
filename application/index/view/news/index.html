@@ -1,0 +1,80 @@
+<!--模板继承头部-->
+{include file="public/head" /}
+
+<!--模板继承身体-->
+{block name="body"}
+<body>
+<header class="zy_search_top_box">
+	<div class="zy_title_top fix">
+		<div class="one" href="javascript:" onclick="history.back();"><img src="__STATIC__/images/back_jt.png"></div>
+		<h1>商城公告</h1>
+	</div>
+</header>	
+
+<!-- 内容框 -->
+<div class="zy_module-content">
+	<div class="zy_newslist_box bgwh">
+		<div id="slideBox" class="slideBox">
+			<div class="bd">
+				<ul class="_picbox_w3_h2">
+					{volist name="list" id="alist"}
+					<li>
+						<a class="pic" href="news_xq.html"><img src="__IMG__/{$alist.img}" /></a>
+						<a class="tit" href="news_xq.html">{$alist.title}</a>
+					</li>
+					{/volist}
+				</ul>
+			</div>
+
+			<div class="hd">
+				<ul></ul>
+			</div>
+		</div>
+		<script type="text/javascript" src="__STATIC__/js/TouchSlide.1.1.js"></script>
+		<script type="text/javascript">
+			TouchSlide({ 
+				slideCell:"#slideBox",
+				titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+				mainCell:".bd ul", 
+				effect:"leftLoop", 
+				autoPage:true, //自动分页
+				autoPlay:3000,
+				delayTime:500,
+			});
+		</script>
+
+		<div class="newslist">
+			<ul class="_picbox_w3_h2_1">
+				{volist name="news" id="anews"}
+				<li>
+					<a href="{:url('news/newscontent',['id'=>$anews.id])}">
+						<h2>
+							<p>{$anews.title}</p>
+							<span>2018-07-29</span>
+						</h2>
+						<i><img src="__IMG__/{$anews.img}"></i>
+					</a>
+				</li>
+				{/volist}
+			</ul>
+			<div class="zy_fanye">
+				<a href="#">上一页</a>
+				<span>
+					<em>1</em>/<i>2</i>
+					<select>
+						<option>第1页</option>
+						<option>第2页</option>
+					</select>
+				</span>
+				<a href="#">下一页</a>
+			</div>
+		</div>
+
+	</div>
+
+	
+</div>
+
+{/block}
+<!--模板继承脚-->
+{include file="public/foot" /}

@@ -1,0 +1,85 @@
+<!--_meat 作为公共模版分离出去-->	
+
+{include file="public/_meta" /}
+
+<!--_meat 作为公共模版分离出去-->	
+<title>编辑图片</title>
+</head>
+<body>
+<div class="page-container">	
+	<form class="layui-form" action="" method="post">
+		<div class="layui-form-item">
+		    <label class="layui-form-label">产品号</label>
+		    <div class="layui-input-block">
+		    	<input type="text" name="product"  value="{$update.product}" autocomplete="off" placeholder="请输入产品号" class="layui-input">
+		    </div>
+	  	</div>
+	  	
+	  	<div class="layui-form-item">
+		    <label class="layui-form-label">厂家名字</label>
+		    <div class="layui-input-block">
+		    	<input type="text" name="name" value="{$update.name}"  autocomplete="off" placeholder="请输入厂家名字" class="layui-input">
+		    </div>
+	  	</div>
+	  	
+	  	<div class="layui-form-item">
+		    <label class="layui-form-label">厂家名地址</label>
+		    <div class="layui-input-block">
+		    	<input type="text" name="addres" value="{$update.addres}"  autocomplete="off" placeholder="请输入厂家地址" class="layui-input">
+		    </div>
+	  	</div>
+	  	
+	  	<div class="layui-form-item">
+		    <label class="layui-form-label">厂家联系方式</label>
+		    <div class="layui-input-block">
+		    	<input type="text" name="phone" value="{$update.phone}"  autocomplete="off" placeholder="请输厂家联系方式" class="layui-input">
+		    </div>
+	  	</div>
+	  	
+	  	<div class="layui-form-item">
+		    <label class="layui-form-label">配料表</label>
+		    <div class="layui-input-block">
+		    	<input type="text" name="burden" value="{$update.burden}"  autocomplete="off" placeholder="请输配料表" class="layui-input">
+		    </div>
+	  	</div>
+	  	
+	  	<div class="layui-form-item">
+		    <label class="layui-form-label">储存方法</label>
+		    <div class="layui-input-block">
+		    	<input type="text" name="storage" value="{$update.storage}"  autocomplete="off" placeholder="储存方法" class="layui-input">
+		    </div>
+	  	</div>
+	  	
+	  	<div class="layui-form-item">
+		    <label class="layui-form-label">保质期</label>
+		    <div class="layui-input-block">
+		    	<input type="text" name="expiration"  value="{$update.expiration}" autocomplete="off" placeholder="保质期" class="layui-input">
+		    </div>
+	  	</div>
+	  
+	  	<div class="layui-form-item">
+		    <label class="layui-form-label">口味</label>
+		    <div class="layui-input-block">
+		    	<input type="text" name="taste" value="{$update.taste}"  autocomplete="off" placeholder="口味" class="layui-input">
+		    </div>
+	  	</div>
+	  	
+	  	<input type="hidden" name="id"  value="{$update.id}" />
+ 		
+		 <div class="layui-form-item">
+		    <div class="layui-input-block">
+		      	<button class="layui-btn" lay-submit lay-filter="demo1" data-insert="{:url('Adminmessage/update')}" id="addBtn">立即提交</button>
+		    </div>
+		  </div>
+	
+	</form>	
+	
+</div>
+<!--_footer 作为公共模版分离出去-->
+
+{include file="public/_footer" /}
+
+<!--_footer 作为公共模版分离出去-->
+
+</body>
+</html>

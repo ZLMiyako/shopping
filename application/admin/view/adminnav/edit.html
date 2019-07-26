@@ -1,0 +1,42 @@
+<!--_meat 作为公共模版分离出去-->	
+
+{include file="public/_meta" /}
+
+<!--_meat 作为公共模版分离出去-->	
+<nav>编辑图片</nav>
+</head>
+<body>
+<div class="page-container">	
+	<form class="layui-form" action="" method="post">
+		<div class="layui-form-item">
+		    <label class="layui-form-label">图片名称</label>
+		    <div class="layui-input-block">
+		    	<input type="text" name="nav" value="{$update.nav}"  autocomplete="off" placeholder="请输入图片名称" class="layui-input">
+		    </div>
+	  	</div>
+	  	<input type="hidden" name="id"  value="{$update.id}" />
+ 		<input type="hidden" name="img" id="uplode"  value="{$update.img}" />
+  		<div class="layui-upload">
+			<button type="button" class="layui-btn" id="test2" data-img="{:url('Adminnav/upload')}">更换图片</button>
+			<div class="layui-upload-list">
+			    <img class="layui-upload-img" id="demo1" src="__IMG__/{$update.img}">
+			    <p id="demoText"></p>
+			</div>
+		</div>
+		 <div class="layui-form-item">
+		    <div class="layui-input-block">
+		      	<button class="layui-btn" lay-submit lay-filter="demo1" data-insert="{:url('Adminnav/update')}" id="addBtn">立即提交</button>
+		    </div>
+		  </div>
+	
+	</form>	
+	
+</div>
+<!--_footer 作为公共模版分离出去-->
+
+{include file="public/_footer" /}
+
+<!--_footer 作为公共模版分离出去-->
+
+</body>
+</html>

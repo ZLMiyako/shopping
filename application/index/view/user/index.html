@@ -1,0 +1,53 @@
+<!--模板继承头部-->
+{include file="public/head" /}
+<body>
+<!-- 内容框 -->
+<div class="zy_module-content">
+	<div class="vip_index_box">
+		<div class="head mb6">
+			<div class="one">
+				<i><img src="__STATIC__/images/pic01.jpg"></i>
+				<h2><!--标题名字最多10个字 -->
+					<p>剁手党的春天<br><b>（钻石会员）</b></p> 
+				</h2>
+				<a href="user_info.html">设置</a>
+			</div>
+			<div class="two dis_flex">
+				<a href="user_shouc.html">
+					<img src="__STATIC__/images/vip_img/vip_icon_sc.png">
+					<span>我的收藏(13)</span>
+				</a>
+				<a href="user_order.html">
+					<img src="__STATIC__/images/vip_img/vip_icon_dd.png">
+					<span>我的订单(9)</span>
+				</a>
+				<a href="user_comment.html">
+					<img src="__STATIC__/images/vip_img/vip_icon_pj.png">
+					<span>我的评价(5)</span>
+				</a>
+			</div>
+		</div>
+		<div class="top_nav dis_flex mb6"> 
+			<a>
+				<span>我的积分:</span><b>11800</b> 
+			</a> 
+			<a href="#" style="text-align:right; color: #999;">积分兑换></a>
+		</div>
+		<div class="list_nav bgwh">
+			<ul>  
+				<li><a href="{:url('User/addr')}"><span><img src="__STATIC__/images/vip_img/vip_icon05.png">地址管理</span></a></li> 
+				<li><a href="user_back_order.html"><span><img src="__STATIC__/images/vip_img/vip_icon06.png">退款/售后</span></a></li>	
+				<li><a href="user_msg.html"><span><img src="__STATIC__/images/vip_img/vip_icon04.png">我的留言</span></a></li>			
+			</ul>
+		</div>
+	</div>
+	
+	<!-- 底部 -->
+	
+	<!-- 底部导航 -->
+	
+</div>
+
+</body>
+<!--模板继承脚-->
+{include file="public/foot" /}

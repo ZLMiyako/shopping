@@ -1,0 +1,136 @@
+<!--模板继承头部-->
+{include file="public/head" /}
+
+<!--模板继承身体-->
+{block name="body"}
+<body>
+<header class="zy_search_top_box">
+	<div class="zy_search_top fix">
+		<div class="one"><a href="{:url('index/index')}"><img src="__STATIC__/images/back_jt.png"></a></div>
+		<div class="box">
+			<form action="{:url('content/asearch')}" method="post">
+				<button style="background: none;"><img src="__STATIC__/images/icon_search.png"/ style="width: 60%; border: none;"></button>
+				<input type="text" placeholder="零食点心" value="" name="keyword"/>
+	   			
+			</form>
+		</div>
+	    <div class="r shaix">
+	    	<span>筛选</span>
+	    </div>
+	</div>
+</header>
+<script type="text/javascript">
+	$(function(){
+		$(".zy_search_top .shaix").mousedown(
+			function(){
+				$(".zy_shaixuanbox").show()
+				$(".zy_search_top_box").hide()			
+				$(".zy_module-content").hide()
+			}
+		)
+		$(".zy_shaixuanbox .one").mousedown(
+			function(){
+				$(".zy_shaixuanbox").hide()
+				$(".zy_search_top_box").show()		
+				$(".zy_module-content").show()
+			}
+		)
+
+		var h1=$(".zy_search_top_box").height();
+		var h2=$(".zy_rank_box").innerHeight();
+
+		$(window).scroll(function(){
+			var s = $(document).scrollTop();
+			if (s>h1) {
+				$(".zy_rank_box").addClass('scroll_fix')
+				$(".zy_gzttc_box").css("padding-top",h2)
+			}else{
+				$(".zy_rank_box").removeClass('scroll_fix')
+				$(".zy_gzttc_box").css("padding-top",0)
+			}
+		});
+	})
+</script>
+<!-- 筛选框 -->
+<div class="zy_shaixuanbox">
+	<div class="zy_title_top zy_shaix_box fix">
+		<div class="one"><img src="__STATIC__/images/back_jt.png"></div>
+		<h1>筛选</h1>
+	</div>
+	<div class="sx_con">
+		<form>
+			<div class="conbox">
+				<h2>类别</h2>
+				<select>
+					<option>酸奶</option>
+					<option>原味</option>
+					<option>草莓</option>
+				</select> 
+			</div>
+			<div class="conbox">
+				<h2>品牌</h2>
+				<select>
+					<option>不限</option>
+					<option>三鹿</option>
+					<option>蒙牛</option>
+				</select>
+			</div> 
+			<div class="conbox price">
+				<h2>价格</h2>
+				<label><input type="text" name="" value="100">~<input type="text" name="" value="400">元</label>
+			</div> 
+			<div class="btn">
+				<button class="quex">取消</button>
+				<button>完成</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<!-- 内容框 -->
+<div class="zy_module-content">
+	<div class="zy_gzttc_box">
+		<div class="zy_rank_box">
+			<ul>
+				<li class="cur"><a href="__STATIC__/#">综合</a></li>
+				<li><a href="__STATIC__/#">销量</a></li>
+				<li class="price"><a>价格</a><span><i class=""></i><i></i></span></li>
+				<li class="type"><a href="{:url('content/alist',['id'=>$id])}"><img src="__STATIC__/images/web/icon_grid.png"></a><span><i></i></span></li>
+			</ul>
+			<script type="text/javascript">
+				$(function(){
+					$(".zy_rank_box .price").click(
+						function(){
+							if ($(".zy_rank_box .price span i:first").hasClass("on")) {
+								$(".zy_rank_box .price span i:first").removeClass("on")
+								$(".zy_rank_box .price span i:first").siblings().addClass("on")
+							}else{
+								$(".zy_rank_box .price span i:first").siblings().removeClass("on")
+								$(".zy_rank_box .price span i:first").addClass("on")
+							}
+						}
+					)
+				})
+			</script>
+		</div>
+		<div class="zy_goods_grid">
+			<ul class="_picbox_w_h">
+				{volist name="list" id="alist"}
+				<li>
+					<a href="{:url('details/index',['id'=>$alist.id])}"><i><img src="__IMG__/{$alist.img}"></i></a>
+					<p><a href="{:url('details/index')}">{$alist.title}</a></p>
+					<span><em>￥{$alist.price}</em><em style="color: #999;margin-left: 0.2rem; font-size: 12px;">点击量：{$alist.pv}</em><i onclick="javascript: alert('成功加入购物车')"></i></span>
+				</li>
+				{/volist}
+			</ul>
+			<div class="zy_more">
+				<h2>上拉加载更多</h2>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+{/block}
+<!--模板继承脚-->
+{include file="public/foot" /}

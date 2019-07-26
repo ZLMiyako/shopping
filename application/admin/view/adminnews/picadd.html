@@ -1,0 +1,74 @@
+<!--_meat 作为公共模版分离出去-->	
+
+{include file="public/_meta" /}
+
+<!--_meat 作为公共模版分离出去-->	
+<title>新增新闻</title>
+</head>
+<body>
+<div class="page-container">	
+	<form class="layui-form" action="" method="post">
+		<div class="layui-form-item">
+		    <label class="layui-form-label"><span style="color: red;">*</span>新闻标题</label>
+		    <div class="layui-input-block">
+		    	<input type="text" name="title"   autocomplete="off" placeholder="请输入图片名称" class="layui-input">
+		    </div>
+	  	</div>
+	  	<input type="hidden" name="img" id="uplode"  value="" />
+  		<div class="layui-upload">
+			  <button type="button" class="layui-btn" id="test2" data-img="{:url('Adminpic/upload')}">图片上传</button> 
+			  <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+			    预览图：
+			   <div class="layui-upload-list" id="demo2"></div>
+			   </blockquote>
+			</div>
+	  	<!--文本编辑器-->
+ 		<div>
+ 			<script id="editor" type="text/plain" name="content" style="width:1030px;height:200px;"></script>
+ 		</div>
+ 		<div id="btns">
+ 			<div>
+ 				 <button onclick="getContent()">获得内容</button>
+ 			</div>
+ 		</div>
+ 		<!--信息-->
+  		<div class="layui-form-item">
+		    
+		    <div class="layui-inline">
+		      <label class="layui-form-label"><span style="color: red;">*</span>编辑人</label>
+		      <div class="layui-input-inline">
+		        <input type="text" name="writer" class="layui-input">
+		      </div>
+		    </div>
+		   
+		</div>
+		<!--提交-->
+		 <div class="layui-form-item">
+		    <div class="layui-input-block">
+		      	<button class="layui-btn" onclick="getContent()" lay-submit lay-filter="demo1" data-insert="{:url('Adminnews/insert')}" id="addBtn">立即提交</button>
+		    </div>
+		  </div>
+	
+	</form>	
+	
+</div>
+
+<!--_footer 作为公共模版分离出去-->
+
+{include file="public/_footer" /}
+
+<!--_footer 作为公共模版分离出去-->
+</body>
+</html>
+<!--//文本编辑器-->
+<script type="text/javascript">
+	
+
+var ue = UE.getEditor('editor');
+		function getContent() {
+        var arr = [];
+        arr.push(UE.getEditor('editor').getContent());
+       // alert(arr.join("\n"));
+      console.log(arr.join("\n"));
+   		};
+</script>

@@ -1,0 +1,61 @@
+<!--_meat 作为公共模版分离出去-->	
+
+{include file="public/_meta" /}
+
+<!--_meat 作为公共模版分离出去-->	
+<title>编辑图片</title>
+</head>
+<body>
+<div class="page-container">	
+	<form class="layui-form" action="" method="post">
+		<div class="layui-form-item">
+		    <label class="layui-form-label">图片名称</label>
+		    <div class="layui-input-block">
+		    	<input type="text" name="name" value="{$update.name}"  autocomplete="off" placeholder="请输入图片名称" class="layui-input">
+		    </div>
+	  	</div>
+	  	<div class="layui-form-item">
+		    <label class="layui-form-label">商品介绍</label>
+		    <div class="layui-input-block">
+		    	<input type="text" value="{$update.title}"  name="title" autocomplete="off" placeholder="请输入商品介绍" class="layui-input">
+		    </div>
+	  	</div>
+	  	<div class="layui-form-item">
+		    <label class="layui-form-label">商品价格</label>
+		    <div class="layui-input-block">
+		    	<input type="text" value="{$update.price}"   name="price" autocomplete="off" placeholder="请输入商品价格" class="layui-input">
+		    </div>
+	  	</div>
+	  	<div class="layui-form-item">
+		    <label class="layui-form-label">商品状态</label>
+		    <div class="layui-input-block">
+		    	<input type="text" value="{$update.status}"   name="status" autocomplete="off" placeholder="请输入图片名称" class="layui-input">
+		    </div>
+	  	</div>
+
+	  	<input type="hidden" name="id"  value="{$update.id}" />
+ 		<input type="hidden" name="img" id="uplode"  value="{$update.img}" />
+  		<div class="layui-upload">
+			<button type="button" class="layui-btn" id="test2" data-img="{:url('Adminproduct/upload')}">更换图片</button>
+			<div class="layui-upload-list">
+			    <img class="layui-upload-img" id="demo1" src="__IMG__/{$update.img}">
+			    <p id="demoText"></p>
+			</div>
+		</div>
+		 <div class="layui-form-item">
+		    <div class="layui-input-block">
+		      	<button class="layui-btn" lay-submit lay-filter="demo1" data-insert="{:url('Adminproduct/update')}" id="addBtn">立即提交</button>
+		    </div>
+		  </div>
+	
+	</form>	
+	
+</div>
+<!--_footer 作为公共模版分离出去-->
+
+{include file="public/_footer" /}
+
+<!--_footer 作为公共模版分离出去-->
+
+</body>
+</html>
