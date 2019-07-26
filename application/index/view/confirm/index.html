@@ -8,7 +8,19 @@
 		<h1>确认订单</h1>
 	</div>
 </header>	
-
+<script>
+	$('.one').click(function(){
+		$.ajax({
+			url: "{:url('Confirm/dele')}",
+			data: {id:1},
+			type: 'POST',
+			dataType: 'json',
+			success: function(msg){
+				console.log(1);
+			},
+		});
+	})
+</script>
 <!-- 内容框 -->
 <div class="zy_module-content">
 	<div class="zy_flow_confirm">
@@ -199,5 +211,4 @@
 
 
 </body>
-<!--模板继承脚-->
-{include file="public/foot" /}
+</html>

@@ -1,4 +1,4 @@
-<?php /*a:1:{s:73:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\shop\index.html";i:1564047047;}*/ ?>
+<?php /*a:1:{s:73:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\shop\index.html";i:1564105040;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,7 +60,7 @@
 						</div>
 						<div class="mui-slider-handle">
 							<div class="xuanz_box">
-								<input class="icheck" type="checkbox" name="sp">
+								<input class="icheck" type="checkbox" value="<?php echo htmlentities($list['id']); ?>">
 								<label></label>
 							</div>
 							<div class="goods">
@@ -95,17 +95,24 @@
 			<script type="text/javascript">
 				//结算按钮
 				function confirm(){
-					var num = 0;
+					var id = "";
 					$(".icheck").each(function(){
-						if(!$(this).prop("checked")){
-							num = ++num;						
+						if($(this).prop("checked")){
+							id = $(this).val() +"," + id;					
 						}
 					})
-					if(num==0){
-						window.location.href="<?php echo url('Confirm/index'); ?>";
-					}else{
-						alert('您有未确定购买的商品，请移出购物车');
-					}
+					console.log(id);
+					$.ajax({
+						url: "<?php echo url('Shop/ts'); ?>",
+						data: {id},
+						type: 'POST',
+						dataType: 'json',
+						success: function(msg){
+							if (msg.code == 1) {
+								window.location.href="<?php echo url('Confirm/index'); ?>";
+				            }
+						},
+					});
 				}
 				//全选框设计
 				$("#theadInp").click(function(){

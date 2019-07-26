@@ -106,4 +106,21 @@
 			}
 			return $this->return_Msg(3,'不能再减少了');
 		}
+
+		public function ts(){
+			$id = input('id');
+			//halt($id);
+			$data = explode(',',trim($id,","));
+			//halt($data);
+			foreach ($data as $key => $value) {
+				$find = Db::name('admingwc')->where('id',$value)->find();
+				//halt($find);
+				$insert = Db::name('admints')->insert($find);
+			}
+			if ($insert) {
+				return $this->return_Msg(1,'已添加');
+			}else{
+				return $this->return_Msg(2,'未添加');
+			}
+		}
 	}

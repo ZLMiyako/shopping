@@ -17,7 +17,7 @@
 				$u_id = $msql['id'];
 				$this->productnum($u_id);
 				//查询对应的商品信息和地址信息
-				$goods = Db::name('admingwc')->where('u_id',$u_id)->select();
+				$goods = Db::name('admints')->where('u_id',$u_id)->select();
 				$totle = 0;
 				foreach ($goods as $key => $value) {
 					$totle += $value['price']*$value['num'];
@@ -31,5 +31,13 @@
 				$this->productnum();
 			}
 			return view();
+		}
+
+		//清空暂存数据表
+		public function dele(){
+			$data = input('id');
+			if($data==1){
+				$dele = Db::name('admints')->delete(true);
+			}
 		}
 	}
