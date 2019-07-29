@@ -1,4 +1,4 @@
-<?php /*a:2:{s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\order\index.html";i:1564134452;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\head.html";i:1564016862;}*/ ?>
+<?php /*a:2:{s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\order\index.html";i:1564365186;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\head.html";i:1564016862;}*/ ?>
 <!--模板继承头部-->
 <!DOCTYPE html>
 <html>
@@ -76,6 +76,10 @@
 		$(".top_zhanwei_box").css("height",top_h)
 	})
 </script>
+<?php if(($list==null)): ?>
+<!-- 购物车为空时 -->
+	<div style="width: 403px;height: 100px; text-align: center; line-height: 120px; "><a href="<?php echo url('content/index'); ?>" style="color: #c53d43;">您还没有生成订单,点击可返回商品页</a></div>
+<?php else: ?>
 <!-- 内容框 -->
 <div class="zy_module-content">	
 	<div class="swiper-container vip_user_order">
@@ -205,6 +209,6 @@
 	    });
     </script>
 </div>
-
+<?php endif; ?>
 </body>
 </html>

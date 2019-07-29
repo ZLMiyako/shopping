@@ -1,4 +1,4 @@
-<?php /*a:3:{s:73:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\user\index.html";i:1564137720;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\head.html";i:1564016862;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\foot.html";i:1563950333;}*/ ?>
+<?php /*a:3:{s:73:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\user\index.html";i:1564365563;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\head.html";i:1564016862;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\foot.html";i:1563950333;}*/ ?>
 <!--模板继承头部-->
 <!DOCTYPE html>
 <html>
@@ -36,6 +36,7 @@
 
 </head>
 <body>
+<?php if((app('session')->get('msql') != null)): ?>
 <!-- 内容框 -->
 <div class="zy_module-content">
 	<div class="vip_index_box">
@@ -82,7 +83,12 @@
 	<!-- 底部导航 -->
 	
 </div>
-
+<?php else: ?>
+<!---------------未登录跳转到登录页------------->
+<div style="width: 100%;height: 150px; margin: 20px auto; text-align: center; line-height: 150px; background-color: #dcd6d9;">
+	<p ><a href="<?php echo url('login/login'); ?>" style="color: #494a41;">您没有登录，请点击登录！</a></p>
+</div>
+<?php endif; ?>
 </body>
 <!--模板继承脚-->
 <!-- 返回顶部 -->

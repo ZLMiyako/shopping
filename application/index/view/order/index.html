@@ -41,6 +41,10 @@
 		$(".top_zhanwei_box").css("height",top_h)
 	})
 </script>
+{if ($list==null)}
+<!-- 购物车为空时 -->
+	<div style="width: 403px;height: 100px; text-align: center; line-height: 120px; "><a href="{:url('content/index')}" style="color: #c53d43;">您还没有生成订单,点击可返回商品页</a></div>
+{else/}
 <!-- 内容框 -->
 <div class="zy_module-content">	
 	<div class="swiper-container vip_user_order">
@@ -170,6 +174,6 @@
 	    });
     </script>
 </div>
-
+{/if}
 </body>
 </html>

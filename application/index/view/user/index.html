@@ -1,6 +1,7 @@
 <!--模板继承头部-->
 {include file="public/head" /}
 <body>
+{if ($Think.session.msql != null)}
 <!-- 内容框 -->
 <div class="zy_module-content">
 	<div class="vip_index_box">
@@ -47,7 +48,12 @@
 	<!-- 底部导航 -->
 	
 </div>
-
+{else/}
+<!---------------未登录跳转到登录页------------->
+<div style="width: 100%;height: 150px; margin: 20px auto; text-align: center; line-height: 150px; background-color: #dcd6d9;">
+	<p ><a href="{:url('login/login')}" style="color: #494a41;">您没有登录，请点击登录！</a></p>
+</div>
+{/if}
 </body>
 <!--模板继承脚-->
 {include file="public/foot" /}
