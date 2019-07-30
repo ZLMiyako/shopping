@@ -1,4 +1,4 @@
-<?php /*a:2:{s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\order\index.html";i:1564456571;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\head.html";i:1564016862;}*/ ?>
+<?php /*a:2:{s:78:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\logistics\index.html";i:1564478257;s:74:"D:\phpstudy\PHPTutorial\WWW\yidong\application\index\view\public\head.html";i:1564016862;}*/ ?>
 <!--模板继承头部-->
 <!DOCTYPE html>
 <html>
@@ -35,12 +35,11 @@
 
 
 </head>
-
 <body>
 <header class="zy_search_top_box vip_top_box">
 	<div class="zy_title_top fix">
 		<div class="one" href="javascript:" onclick="history.back();"><img src="/yidong/public/static/index/images/back_jt.png"></div>
-		<h1>我的订单</h1>
+		<h1>物流详情</h1>
 	    <div class="r">
 	    	<span><img src="/yidong/public/static/index/images/web/zy_icon_menu.png"></span>
 	    	<dl>
@@ -76,88 +75,49 @@
 		$(".top_zhanwei_box").css("height",top_h)
 	})
 </script>
-<?php if(($list==null)): ?>
-<!-- 购物车为空时 -->
-	<div style="width: 403px;height: 100px; text-align: center; line-height: 120px; "><a href="<?php echo url('content/index'); ?>" style="color: #c53d43;">您还没有生成订单,点击可返回商品页</a></div>
-<?php else: ?>
 <!-- 内容框 -->
 <div class="zy_module-content">	
-	<div class="swiper-container vip_user_order">
-		<!-- top nav -->
-		<div class="order_nav dis_flex"></div>
-		<div class="swiper-wrapper">
-			<div class="swiper-slide">
-				<ul>
-                    <?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$num): $mod = ($i % 2 );++$i;?>
-					<li>
-						<div class="vip_order_goods">
-                            <h2><a>千辉超市<em></em></a></h2>
-                            <?php if(is_array($num) || $num instanceof \think\Collection || $num instanceof \think\Paginator): $i = 0; $__LIST__ = $num;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$goods): $mod = ($i % 2 );++$i;?>
-							<h3>
-								<a href="<?php echo url('Particulars/index',['id'=>$goods['n_id']]); ?>">
-									<i><img src="/yidong/public/uploads/<?php echo htmlentities($goods['img']); ?>"></i>
-									<dl>
-										<dt><?php echo htmlentities($goods['title']); ?></dt>
-									</dl>
-								</a>
-								<p>
-									<span>￥<?php echo htmlentities($goods['price']); ?>.00</span>
-									<em>X<?php echo htmlentities($goods['num']); ?></em>
-								</p>
-                            </h3>
-                            <?php endforeach; endif; else: echo "" ;endif; ?>
-						</div>
-						<div class="total">
-							<span>共<?php echo htmlentities($goods['nums']); ?>件商品实付：<a><?php echo htmlentities($goods['totle']); ?>.00元</a></span>
-						</div>
-						<div class="order_btn">
-							<a href="user_back_order_tk.html">退款</a>
-							<span>已确认</span>
-						</div>
-                    </li>
-                    <?php endforeach; endif; else: echo "" ;endif; ?>
-				</ul>
-				<div class="zy_fanye">
-					<a href="#">上一页</a>
-					<span>
-						<em>1</em>/<i>2</i>
-						<select>
-							<option>第1页</option>
-							<option>第2页</option>
-						</select>
-					</span>
-					<a href="#">下一页</a>
-				</div>
-			</div> 
-			<div class="swiper-slide">
-				待付款
+	<div class="user_order_detail user_order_kuaidi">
+		
+		<div class="goods mb6 bgwh">
+			<div class="zy_title_con_01">
+				<h2><span>订单商品<i></i></span></h2>
 			</div>
-			<div class="swiper-slide">
-				待发货
-			</div>
-			<div class="swiper-slide">
-				已成交
+			<div class="vip_order_goods p_2">
+                <?php if(is_array($goods) || $goods instanceof \think\Collection || $goods instanceof \think\Paginator): $i = 0; $__LIST__ = $goods;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$goods): $mod = ($i % 2 );++$i;?>
+				<h3>
+					<a href="">
+						<i><img src="/yidong/public/uploads/<?php echo htmlentities($goods['img']); ?>"></i>
+						<dl>
+							<dt><?php echo htmlentities($goods['title']); ?></dt>
+						</dl>
+					</a>
+					<p>
+						<span>￥<?php echo htmlentities($goods['price']); ?>.00</span>
+						<em>X<?php echo htmlentities($goods['num']); ?></em>
+					</p>
+                </h3>
+                <?php endforeach; endif; else: echo "" ;endif; ?>
 			</div>
 		</div>
+		<div class="wuliu">
+			<dl>
+				<!-- <dd>同城快递</dd> -->
+				<dd>运单号码：<?php echo htmlentities($logistics); ?></dd>
+				<dd>物流状态：已签收</dd>
+			</dl>
+			<h2><span>物流信息</span></h2>
+			<ul>
+                    <?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?>
+                    <li class="cur">
+                        <span><i></i></span>
+                        <p><?php echo htmlentities($list['status']); ?></p>
+                    </li>
+                    <?php endforeach; endif; else: echo "" ;endif; ?>
+			</ul>
+		</div>
 	</div>
-	<script>
-	    var swiper = new Swiper('.vip_user_order', {
-	    	autoHeight: true, //enable auto height
-	    	pagination: '.order_nav',
-			paginationClickable: true,
-			paginationBulletRender: function (swiper,index, className) {
-			switch (index) {
-			  case 0: name='全部';break; 
-			  case 1: name='待付款';break;
-			  case 2: name='待发货';break;
-			  case 3: name='已成交';break;
-			  default: name='';
-			}
-			      return '<a class="' + className + '">' + name + '</a>';
-			  }
-	    });
-    </script>
 </div>
-<?php endif; ?>
+
 </body>
 </html>

@@ -23,10 +23,11 @@
 					$nums = 0;
 					$random = time();
 					$res = Db::name('adminorder_number')->insert(['order_number'=>$random]);
+					$n_id = Db::name('adminorder_number')->where(['order_number'=>$random])->find();
 					foreach ($goods as $key => $value) {
 						$totle += $value['price']*$value['num'];
 						$nums += $value['num'];
-						$order = Db::name('adminorder')->insert(['g_id'=>$value['id'],'img'=>$value['img'],'title'=>$value['title'],'price'=>$value['price'],'num'=>$value['num'],'u_id'=>$value['u_id'],'order_number'=>$random]);
+						$order = Db::name('adminorder')->insert(['g_id'=>$value['id'],'img'=>$value['img'],'title'=>$value['title'],'price'=>$value['price'],'num'=>$value['num'],'u_id'=>$value['u_id'],'n_id'=>$n_id['id']]);
 					}
 					$orders = Db::name('adminorder')->where('order_number',$random)->update(['totle'=>$totle,'nums'=>$nums]);
 					//halt($orders);
@@ -46,7 +47,7 @@
 			}
 			$order_number = Db::name('adminorder_number')->select();
 			foreach ($order_number as $key => $value) {
-				$list[$key] = Db::name('adminorder')->where('order_number',$value['order_number'])->select();
+				$list[$key] = Db::name('adminorder')->where('n_id',$value['id'])->select();
 			}
 			$this->assign('list',$list);
 			return view();
